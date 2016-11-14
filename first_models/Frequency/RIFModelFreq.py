@@ -27,15 +27,14 @@ class RIFModelFreq(object):
             encoders=model.items.state_ensembles.all_ensembles[0].encoders.sample(n=n_neuron,d=D_items)
             print len(encoders)
             print len(encoders[0])
-            related=0.5
+            related=1-1/(10**25)
             w=1.0/related - 1
-            count=1
+            
             for k in sorted(mapping.keys()[:4]):#Practiced Category 
                 for item in mapping[k][:2]: #low freq items
-                    for i in range((count-1)*50,count*50):
+                    for i in range(n_neuron):
                         encoders[i] = -self.vocab_items.parse(item).v+ w*encoders[i]
                         encoders[i] = encoders[i] / np.linalg.norm(encoders[i])
-                    count=count+1
             model.items.state_ensembles.all_ensembles[0].encoders=encoders
                         
             def learned(x):
