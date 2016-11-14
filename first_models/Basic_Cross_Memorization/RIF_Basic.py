@@ -14,9 +14,9 @@ mapping = {
 
 
 Data=np.array([0,0,0])
-Num_of_Ss=100
+Num_of_Ss=2
 for i in range(0,Num_of_Ss):
-    m = RIFModelRev(mapping, learning_rate=1e-5,DimVocab=256)
+    m = RIFModel(mapping, learning_rate=1e-5,DimVocab=256)
 
     categories=mapping.keys()
     rnd.shuffle(categories)
