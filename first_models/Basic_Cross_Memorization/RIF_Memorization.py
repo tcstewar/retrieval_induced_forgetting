@@ -12,8 +12,8 @@ mapping = {
 }
 
 
- Data=np.array([0,0,0])
-Num_of_Ss=50
+Data=np.array([0,0,0])
+Num_of_Ss=2
 for i in range(0,Num_of_Ss):
     m = RIFModel(mapping, learning_rate=1e-5,DimVocab=256)
 
@@ -43,7 +43,7 @@ for i in range(0,Num_of_Ss):
     #phase 2 - practicing : RP+
     for cat in Rp_Plus:
         for item in Rp_Plus[cat]:
-            m.memorize(cat,item,'category')
+            m.memorize(cat,item)
     
     #phase 4 - test
     Rp_Plus_Test=[]
