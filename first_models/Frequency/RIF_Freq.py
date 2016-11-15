@@ -1,5 +1,6 @@
 #execfile('RIFModel.py')
-execfile('RIFModelFreq.py')
+execfile('RIFModelFreq_changeall.py')
+#execfile('RIFModelFreq_change50.py')
 
 #pahse 1 - learning
 mapping = {
