@@ -1,5 +1,5 @@
 #execfile('RIFModel.py')
-execfile('RIFModelSemantic.py')
+execfile('RIFModelSemantic_large.py')
 
 #pahse 1 - learning
 mapping = {
