@@ -1,4 +1,5 @@
-execfile('RIFModel.py')
+execfile('RIFModelRev2.py')
+
 #pahse 1 - learning
 mapping = {
     'DRINKS': ['VODKA', 'BOURBON', 'RUM','ALE','GIN','WHISKEY'],
@@ -13,9 +14,9 @@ mapping = {
 
 
 Data=np.array([0,0,0])
-Num_of_Ss=50
+Num_of_Ss=1
 for i in range(0,Num_of_Ss):
-    m = RIFModel(mapping, learning_rate=1e-5,D_items=256)
+    m = RIFModelRev(mapping, learning_rate=1e-5,DimVocab=256)
 
     categories=mapping.keys()
     rnd.shuffle(categories)
@@ -71,6 +72,6 @@ np.savetxt('RIF_Memorization.csv', Data, delimiter=',')
 
 Means=[np.mean(Rpp),np.mean(nRp),np.mean(Rpn)]
 SDs=[np.std(Rpp),np.std(nRp),np.std(Rpn)]
-scipy.stats.ttest_rel(Rpp,nRp)
-scipy.stats.ttest_rel(nRp,Rpn)
+print scipy.stats.ttest_rel(Rpp,nRp)
+print scipy.stats.ttest_rel(nRp,Rpn)
 

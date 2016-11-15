@@ -1,4 +1,6 @@
-execfile('RIFModel.py')
+#execfile('RIFModel.py')
+execfile('RIFModelRev2.py')
+
 #pahse 1 - learning
 mapping = {
     'DRINKS': ['VODKA', 'BOURBON', 'RUM','ALE','GIN','WHISKEY'],
@@ -13,9 +15,9 @@ mapping = {
 
 
 Data=np.array([0,0,0])
-Num_of_Ss=50
+Num_of_Ss=1
 for i in range(0,Num_of_Ss):
-    m = RIFModel(mapping, learning_rate=1e-5,D_items=256)
+    m = RIFModelRev(mapping, learning_rate=1e-5,DimVocab=256)
 
     categories=mapping.keys()
     rnd.shuffle(categories)
@@ -43,8 +45,9 @@ for i in range(0,Num_of_Ss):
     #phase 2 - practicing : RP+
     for cat in Rp_Plus:
         for item in Rp_Plus[cat]:
-            m.memorize(cat,item)
-    
+            #m.practice(cat,item)
+            m.practice_reverse(cat,item,'category')
+
     #phase 4 - test
     Rp_Plus_Test=[]
     for pc in Rp_Plus:
@@ -67,10 +70,10 @@ Rpp=Data[:,0] #+
 nRp=Data[:,1] #non pracctice
 Rpn=Data[:,2] #-
 
-np.savetxt('RIF_Memorization.csv', Data, delimiter=',')
+np.savetxt('RIF_Basic.csv', Data, delimiter=',')
 
 Means=[np.mean(Rpp),np.mean(nRp),np.mean(Rpn)]
 SDs=[np.std(Rpp),np.std(nRp),np.std(Rpn)]
-scipy.stats.ttest_rel(Rpp,nRp)
-scipy.stats.ttest_rel(nRp,Rpn)
+print scipy.stats.ttest_rel(Rpp,nRp)
+print scipy.stats.ttest_rel(nRp,Rpn)
 
