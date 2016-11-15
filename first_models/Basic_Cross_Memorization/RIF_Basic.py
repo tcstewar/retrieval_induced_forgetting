@@ -1,5 +1,4 @@
 execfile('RIFModel.py')
-
 #pahse 1 - learning
 mapping = {
     'DRINKS': ['VODKA', 'BOURBON', 'RUM','ALE','GIN','WHISKEY'],
@@ -14,9 +13,9 @@ mapping = {
 
 
 Data=np.array([0,0,0])
-Num_of_Ss=100
+Num_of_Ss=50
 for i in range(0,Num_of_Ss):
-    m = RIFModelRev(mapping, learning_rate=1e-5,DimVocab=256)
+    m = RIFModel(mapping, learning_rate=1e-5,D_items=256)
 
     categories=mapping.keys()
     rnd.shuffle(categories)
@@ -44,9 +43,8 @@ for i in range(0,Num_of_Ss):
     #phase 2 - practicing : RP+
     for cat in Rp_Plus:
         for item in Rp_Plus[cat]:
-            #m.practice(cat,item)
-            m.practice(cat,item,'category')
-
+            m.practice(cat,item)
+    
     #phase 4 - test
     Rp_Plus_Test=[]
     for pc in Rp_Plus:
@@ -69,7 +67,7 @@ Rpp=Data[:,0] #+
 nRp=Data[:,1] #non pracctice
 Rpn=Data[:,2] #-
 
-np.savetxt('RIF.csv', Data, delimiter=',')
+np.savetxt('RIF_Basic.csv', Data, delimiter=',')
 
 Means=[np.mean(Rpp),np.mean(nRp),np.mean(Rpn)]
 SDs=[np.std(Rpp),np.std(nRp),np.std(Rpn)]
